@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Formik } from 'formik';
 import ToastNotifier, { ToastNotifierRef } from '../Alertas/ToastNotifier';
 import { Input, Select, Button, Typography, Spin, Tag, Table } from 'antd';
@@ -7,7 +7,6 @@ import { obtenerMedicamento } from '../../Services/Medicamento/MedicamentoServic
 import { ObtenerLugares } from '../../Services/Lugar/LugarService';
 import { AsignarLugar, CargarInventarioLugar } from '../../Services/Inventario/InventarioService';
 import { InventarioStockResponse } from '../../Interfaces/InterfacesResponse/Inventario/InventarioStockResponse';
-const { Option } = Select;
 const { Title } = Typography;
 
 const InventarioAsigComponent = () => {

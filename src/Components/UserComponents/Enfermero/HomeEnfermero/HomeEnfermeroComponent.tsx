@@ -1,6 +1,6 @@
 // src/components/HomeEnfermeroComponent.tsx
 import React, { useEffect, useState } from 'react';
-import { Typography, Card, Row, Col } from 'antd';
+import { Typography, Card } from 'antd';
 
 const { Title, Paragraph } = Typography;
 

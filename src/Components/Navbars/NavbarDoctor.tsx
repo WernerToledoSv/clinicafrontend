@@ -7,7 +7,6 @@ import {
   MenuFoldOutlined,
   InfoCircleOutlined,
   LogoutOutlined,
-  FileTextOutlined,
   UserOutlined
 } from '@ant-design/icons';
 import HomeDoctorComponent from '../UserComponents/Doctor/HomeDoctor/HomeDoctorComponent';

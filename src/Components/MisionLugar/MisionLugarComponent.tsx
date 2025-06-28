@@ -208,7 +208,7 @@ const MisionLugarComponent: React.FC = () => {
             <Button
               type="primary"
               icon={<EditOutlined />}
-              onClick={() => handleEditar(record)}
+              //onClick={() => handleEditar(record)}
             />
             <Button
               icon={<DeleteOutlined />}
@@ -221,9 +221,9 @@ const MisionLugarComponent: React.FC = () => {
     },
   ];
 
-  const handleEditar = (union: UnionMisionLugarResponse) => {
+  // const handleEditar = (union: UnionMisionLugarResponse) => {
 
-  };
+  // };
   
   const handleEliminar = async (union: UnionMisionLugarResponse) => {
     try {
@@ -302,7 +302,7 @@ const MisionLugarComponent: React.FC = () => {
           initialValues={ new LugarMisionRequest()}
           onSubmit={handleSubmit}
         >
-          {({ values, setFieldValue, handleSubmit, isSubmitting }) => (
+          {({ values, setFieldValue, isSubmitting }) => (
             <Form>
               <div style={{ marginBottom: 24 }}>
                 <label>Misión</label>

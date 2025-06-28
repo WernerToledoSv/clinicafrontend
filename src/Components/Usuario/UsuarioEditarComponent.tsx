@@ -9,7 +9,6 @@ import ToastNotifier, { ToastNotifierRef } from '../Alertas/ToastNotifier';
 import { ObjectResponse } from '../../Interfaces/BaseResponse/ObjectResponse';
 import { UsuarioEditarRequest } from '../../Interfaces/InterfacesResponse/Usuario/UsuarioEditarRequest';
 
-const { Option } = Select;
 const userApiUrl = import.meta.env.VITE_USER_API;
 
 interface Props {

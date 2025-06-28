@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Modal, Input, Button, Spin, Space } from 'antd';
+import { Modal, Input, Button, Spin } from 'antd';
 import { Formik, FormikHelpers } from 'formik';
 import { TipoMedicamentoResponse } from '../../Interfaces/InterfacesResponse/TipoMedicamento/TipoMedicamentoResponse';
 import { TipoMedicamentoRequest } from '../../Interfaces/InterfacesResponse/TipoMedicamento/TipoMedicamentoRequest'; 
