@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect} from 'react';
 import { Formik, FormikHelpers } from 'formik';
-import { Input, Button, Typography, DatePicker, Spin, Space, Tag, Row, Table } from 'antd';
+import { Input, Button, Typography, DatePicker, Spin, Space, Row, Table } from 'antd';
 import { MisionRequest } from '../../Interfaces/InterfacesResponse/Mision/MisionRequest'; // Ajusta la ruta
 import ToastNotifier, { ToastNotifierRef } from '../Alertas/ToastNotifier'; // Componente para mostrar mensajes de alerta
 import dayjs from 'dayjs';
@@ -87,22 +87,22 @@ const activarMision = async (pId: number): Promise<ObjectResponse<MisionResponse
 };
 
 //cambiar estado
-const cambiarEstadoMision = async (pId: number, pEstado: string): Promise<ObjectResponse<MisionResponse>> => {
-  const response = await fetch(`${userApiUrl}v1/Mision/CambiarEstado`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ pId, pEstado }), // Enviamos el pId en el cuerpo
-  });
+// const cambiarEstadoMision = async (pId: number, pEstado: string): Promise<ObjectResponse<MisionResponse>> => {
+//   const response = await fetch(`${userApiUrl}v1/Mision/CambiarEstado`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ pId, pEstado }), // Enviamos el pId en el cuerpo
+//   });
 
-  if (!response.ok) {
-    throw new Error('Error al cambiar el estdo de la mision');
-  }
+//   if (!response.ok) {
+//     throw new Error('Error al cambiar el estdo de la mision');
+//   }
 
-  const data = await response.json();
-  return new ObjectResponse<MisionResponse>(data.code, data.message, data.item);
-};
+//   const data = await response.json();
+//   return new ObjectResponse<MisionResponse>(data.code, data.message, data.item);
+// };
 
 //Funciones apis
 
