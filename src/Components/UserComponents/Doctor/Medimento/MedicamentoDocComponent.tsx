@@ -13,7 +13,6 @@ const MedicamentoDocComponent: React.FC = () => {
   const [Lugar, setLugar] = useState<string | null>(null);
   const [inventarioLugarData, setInventarioLugarData] = useState<InventarioStockResponse[]>([]);
   const [filtro, setFiltro] = useState<string>(''); 
-  const [loginData, setLoginData] = useState<any>(null);  
 
 // Obtener login del sessionStorage
   useEffect(() => {
