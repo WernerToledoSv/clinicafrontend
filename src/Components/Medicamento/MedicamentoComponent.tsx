@@ -12,6 +12,7 @@ import type { ColumnsType } from 'antd/es/table';
 import { EditOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons';
 import MedicamentoEditarComponent from './MedicamentoEditarComponent';
 
+const { Search } = Input;
 
 const inventarioApiUrl = import.meta.env.VITE_INVENTARIO_API;
 
@@ -23,6 +24,7 @@ const MedicamentoComponent: React.FC = () => {
   const [medicamento, setMedicamento] = useState<MedicamentoResponse[]>([]);
   const [panelVisible, setPanelVisible] = useState(false);
   const [MedicamentoSeleccionado, setMedicamentoSeleccionado] = useState<MedicamentoResponse | undefined>(undefined);
+  const [filtro, setFiltro] = useState<string>('');
     
 
   useEffect(() => {
@@ -268,6 +270,11 @@ const MedicamentoComponent: React.FC = () => {
     }
   };
 
+  //buscador
+  const datosFiltrados = medicamento.filter((item) =>
+    item.nombre.toLowerCase().includes(filtro.toLowerCase())
+  );
+
   return (
     <div>
       <ToastNotifier ref={toastRef} />
@@ -386,9 +393,16 @@ const MedicamentoComponent: React.FC = () => {
         <Row justify="center">
           <h1>Registros de los medicamentos</h1>
         </Row>
+        <Search
+          placeholder="Buscar medicamento..."
+          allowClear
+          onChange={(e) => setFiltro(e.target.value)}
+          style={{ marginBottom: '40px' }}
+        />
+
         <Table
           columns={columns}
-          dataSource={medicamento}
+          dataSource={datosFiltrados}
           rowKey="id"
           pagination={{ pageSize: 5 }}
           scroll={{ x: 'max-content' }} 

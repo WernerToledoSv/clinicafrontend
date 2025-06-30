@@ -13,7 +13,7 @@
   import { obtenerMedicamento } from '../../Services/Medicamento/MedicamentoService';
   const { Option } = Select;
   const { Title } = Typography;
-
+  const { Search } = Input;
 
   const InventarioComponent = () => {
     const toastRef = useRef<ToastNotifierRef>(null);
@@ -24,6 +24,7 @@
     const [inventarioData, setInventarioData] = useState<InventarioResponse[]>([]);
     const [tipoMovimiento, settipoMovimientoValue] = useState<string | undefined>('in');
     const [lugares, setLugares] = useState<{ value: number; label: string }[]>([]);
+    const [filtro, setFiltro] = useState<string>('');
       
 
   const columnasMedicamentos = [
@@ -242,6 +243,14 @@
       }
     };
 
+      //buscador
+    const datosFiltrados = inventarioData.filter((item) =>
+      item.medicamento.toLowerCase().includes(filtro.toLowerCase())
+    );
+
+    const datosFiltradosStock = stockData.filter((item) =>
+      item.nombreMedicamento.toLowerCase().includes(filtro.toLowerCase())
+    );
 
     return (
       <div style={{ padding: 24 }}>
@@ -400,10 +409,17 @@
             <Option value="inventario">Inventario</Option>
             <Option value="stock">Stock del inventario</Option>
           </Select>
-
+          
+          <Search
+            placeholder="Buscar medicamento..."
+            allowClear
+            onChange={(e) => setFiltro(e.target.value)}
+            style={{ marginBottom: '40px' }}
+          />
+                    
           {filtroTabla === 'inventario' ? (
             <Table
-              dataSource={inventarioData}
+              dataSource={datosFiltrados}
               columns={columnasInventario}
               rowKey="Id"
               pagination={{ pageSize: 5 }}
@@ -411,7 +427,7 @@
             />
           ) : (
             <Table
-              dataSource={stockData}
+              dataSource={datosFiltradosStock}
               columns={columnasMedicamentos}
               rowKey="NombreMedicamento"
               pagination={{ pageSize: 5 }}

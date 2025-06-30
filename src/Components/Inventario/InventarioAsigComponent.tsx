@@ -8,6 +8,7 @@ import { ObtenerLugares } from '../../Services/Lugar/LugarService';
 import { AsignarLugar, CargarInventarioLugar } from '../../Services/Inventario/InventarioService';
 import { InventarioStockResponse } from '../../Interfaces/InterfacesResponse/Inventario/InventarioStockResponse';
 const { Title } = Typography;
+const { Search } = Input;
 
 const InventarioAsigComponent = () => {
   const toastRef = useRef<ToastNotifierRef>(null);
@@ -16,7 +17,8 @@ const InventarioAsigComponent = () => {
   const [inventarioLugarData, setInventarioLugarData] = useState<InventarioStockResponse[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [lugarSeleccionado, setLugarSeleccionado] = useState<number>();
-     
+  const [filtro, setFiltro] = useState<string>('');
+           
 
   useEffect(() => {
     cargarMedicamentos();
@@ -144,6 +146,10 @@ const InventarioAsigComponent = () => {
     }
   };
 
+  const datosFiltrados = inventarioLugarData.filter((item) =>
+      item.nombreMedicamento.toLowerCase().includes(filtro.toLowerCase())
+    );
+
   return (
     <div style={{ padding: 24 }}>
       <Spin spinning={isLoading} tip="Cargando...">
@@ -160,6 +166,7 @@ const InventarioAsigComponent = () => {
                 value={values.idMedicamento}
                 onChange={(value) => setFieldValue('idMedicamento', value)}
                 showSearch
+                optionFilterProp="label"
                 allowClear
                 options={medicamentos}
               />
@@ -169,7 +176,8 @@ const InventarioAsigComponent = () => {
                 placeholder="Descripción"
                 size="large"
                 style={{ marginBottom: 24 }}
-                value={values.descripcion}
+                value={ values.descripcion !== undefined && values.descripcion !== ''
+                        ? values.descripcion:"Asignacion de medicamento (Admin)"}
                 onChange={handleChange}
               />
 
@@ -200,6 +208,7 @@ const InventarioAsigComponent = () => {
                 style={{ width: '100%', marginBottom: 24 }}
                 value={values.idLugar}
                 onChange={(value) => setFieldValue('idLugar', value)}
+                optionFilterProp="label"
                 showSearch
                 allowClear
                 options={lugares}
@@ -226,8 +235,16 @@ const InventarioAsigComponent = () => {
             optionFilterProp="label"
             options={lugares}
         />
+
+        <Search
+          placeholder="Buscar medicamento..."
+          allowClear
+          onChange={(e) => setFiltro(e.target.value)}
+          style={{ marginBottom: '40px' }}
+        />
+
         <Table
-              dataSource={inventarioLugarData}
+              dataSource={datosFiltrados}
               columns={columnasMedicamentos}
               rowKey="Id"
               pagination={{ pageSize: 5 }}

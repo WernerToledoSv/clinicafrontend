@@ -62,7 +62,7 @@ export function LoginComponent({ onChangeView }: LoginProps) {
       toastRef.current?.showMessage({
         severity: 'error',
         summary: 'Error en la operación',
-        detail: 'Contactese con el administrado'
+        detail: 'Contactese con el administrador'
       });
     } finally {
       actions.setSubmitting(false);

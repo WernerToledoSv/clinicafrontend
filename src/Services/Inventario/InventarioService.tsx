@@ -33,6 +33,7 @@ export const AgregarInventario = async(data: InventarioRequest): Promise<Generic
     const res = await response.json();
     return new GenericResponse(res.code, res.message);
 }
+
 export const AsignarLugar = async(data: InventarioRequest): Promise<GenericResponse> => {
     
     const response = await fetch(`${UrlInventario}v1/Inventario/Asignar-Lugar`,{
