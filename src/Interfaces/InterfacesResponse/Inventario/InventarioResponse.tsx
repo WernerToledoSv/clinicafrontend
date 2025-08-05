@@ -12,7 +12,7 @@ export class InventarioResponse {
   cantidadTotal: number;
   fechaAccion: Date;
   fechaExpira: Date;
-  acccion: string;
+  accion: string;
 
   constructor(
     id: number,
@@ -28,7 +28,7 @@ export class InventarioResponse {
     cantidadTotal: number,
     fechaAccion: Date,
     fechaExpira: Date,
-    acccion: string
+    accion: string
   ) {
     this.id = id;
     this.idMedicamento = idMedicamento;
@@ -43,6 +43,6 @@ export class InventarioResponse {
     this.cantidadTotal = cantidadTotal;
     this.fechaAccion = fechaAccion;
     this.fechaExpira = fechaExpira;
-    this.acccion = acccion;
+    this.accion = accion;
   }
 }

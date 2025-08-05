@@ -41,3 +41,16 @@ export const EditarPaciente = async(data: PacienteRq): Promise<GenericResponse> 
     const res = await response.json();
     return new GenericResponse(res.code, res.message);
 }
+
+export const CambiarEstadoPaciente = async (id: number): Promise<GenericResponse> => {
+  const data = { id, estado: 'atendido' };
+
+  const response = await fetch(`${userApiUrl}v1/Paciente/CambiarEstado`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+
+  const res = await response.json();
+  return new GenericResponse(res.code, res.message);
+};

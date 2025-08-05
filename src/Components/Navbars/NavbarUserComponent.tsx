@@ -11,6 +11,8 @@ import {
 } from '@ant-design/icons';
 import HomeUsuarioComponent from '../UserComponents/Usuario/HomeUsuario/HomeUsuarioComponent';
 import PacienteComponent from '../UserComponents/Usuario/Paciente/PacienteComponent';
+import logo from '../../imgs/logoNav.png'
+
 
 const { Sider, Content } = Layout;
 
@@ -36,7 +38,12 @@ const NavbarUserComponent: React.FC = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={toggleSidebar} theme="dark" width={250}>
         <div style={{ padding: '16px', textAlign: 'center', color: '#fff', fontSize: '20px' }}>
-          {collapsed ? 'Logo' : 'Panel Usuario'}
+          {collapsed ? <img
+            src={logo} // Cambia esto por la ruta de tu imagen
+            alt="Logo"
+            style={{ width: '40px', height: '40px' }} // Ajusta el tamaño como quieras
+          /> 
+          : 'Panel Usuario'}
         </div>
         <Menu
           theme="dark"

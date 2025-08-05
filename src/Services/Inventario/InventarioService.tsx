@@ -75,5 +75,14 @@ export const CargarInventarioLugar = async(idLugar: number): Promise<ListRespons
     return new ListResponse<InventarioStockResponse>(res.code, res.message, res.items);
 };
 
+export const ActualizarInventario = async(data: InventarioResponse): Promise<GenericResponse> => {
+    const response = await fetch(`${UrlInventario}v1/Inventario/Actualizar`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    const res = await response.json();
+    return new GenericResponse(res.code, res.message);
+};
 
 

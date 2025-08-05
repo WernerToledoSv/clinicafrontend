@@ -8,6 +8,9 @@ export class PacienteRq {
   direccion?: string;
   idLugar?: number;
   nombreLugar?: string;
+  tipoconsulta?: string;  // nuevo
+  tipopaciente?: string;  // nuevo
+  estado?: string;        // nuevo
 
   constructor(
     id?: number,
@@ -18,7 +21,10 @@ export class PacienteRq {
     cel?: string,
     direccion?: string,
     idLugar?: number,
-    nombreLugar?: string
+    nombreLugar?: string,
+    tipoconsulta?: string,
+    tipopaciente?: string,
+    estado?: string
   ) {
     this.id = id;
     this.nombres = nombres;
@@ -29,5 +35,8 @@ export class PacienteRq {
     this.direccion = direccion;
     this.idLugar = idLugar;
     this.nombreLugar = nombreLugar;
+    this.tipoconsulta = tipoconsulta;
+    this.tipopaciente = tipopaciente;
+    this.estado = estado;
   }
 }

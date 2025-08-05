@@ -25,6 +25,7 @@ import InventarioComponentTab from '../Inventario/InventarioComponentTab';
 import MedicamentoComponent from '../Medicamento/MedicamentoComponent';
 import TipoMedicamentoComponent from '../TipoMedicamento/TipoMedicamentoComponent';
 import TipoMedidaComponent from '../TipoMedida/TipoMedidaComponent';
+import logo from '../../imgs/logoNav.png'
 
 
 const { Sider, Content } = Layout;
@@ -62,7 +63,12 @@ const NavbarAdmin: React.FC = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={toggleSidebar} theme="dark" width={250}>
         <div style={{ padding: '16px', textAlign: 'center', color: '#fff', fontSize: '20px' }}>
-          {collapsed ? 'Logo' : 'Admin Dashboard'}
+            {collapsed ?  <img
+            src={logo} // Cambia esto por la ruta de tu imagen
+            alt="Logo"
+            style={{ width: '40px', height: '40px' }} // Ajusta el tamaño como quieras
+          /> 
+        : 'Admin Dashboard'}
         </div>
         <Menu
           theme="dark"

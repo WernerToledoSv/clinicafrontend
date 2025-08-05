@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons';
 import HomeDoctorComponent from '../UserComponents/Doctor/HomeDoctor/HomeDoctorComponent';
 import MedicamentoDocComponent from '../UserComponents/Doctor/Medimento/MedicamentoDocComponent';
+import logo from '../../imgs/logoNav.png'
 
 
 const { Sider, Content } = Layout;
@@ -37,7 +38,12 @@ const NavbarDoctor: React.FC = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={toggleSidebar} theme="dark" width={250}>
         <div style={{ padding: '16px', textAlign: 'center', color: '#fff', fontSize: '20px' }}>
-          {collapsed ? 'Logo' : 'Panel Doctor'}
+          {collapsed ? <img
+            src={logo} // Cambia esto por la ruta de tu imagen
+            alt="Logo"
+            style={{ width: '40px', height: '40px' }} // Ajusta el tamaño como quieras
+          />  
+          : 'Panel Doctor'}
         </div>
         <Menu
           theme="dark"

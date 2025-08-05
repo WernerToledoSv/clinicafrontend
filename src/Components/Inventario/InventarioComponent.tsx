@@ -7,10 +7,12 @@
   import { Formik } from 'formik';
   import { InventarioRequest } from '../../Interfaces/InterfacesResponse/Inventario/InventarioRequest';
   import { AgregarInventario, SalidaInventario } from '../../Services/Inventario/InventarioService';
-  import { Input, Button, Typography, DatePicker, Spin, Tag, Table, Select} from 'antd';
+  import { Input, Button, Typography, DatePicker, Spin, Tag, Table, Select, Space } from 'antd';
   import { ObtenerLugares } from '../../Services/Lugar/LugarService';
   import dayjs from 'dayjs';
   import { obtenerMedicamento } from '../../Services/Medicamento/MedicamentoService';
+  import { EditOutlined } from '@ant-design/icons';
+  import InventarioEditarComponent from './InventarioEditComponent';
   const { Option } = Select;
   const { Title } = Typography;
   const { Search } = Input;
@@ -25,6 +27,8 @@
     const [tipoMovimiento, settipoMovimientoValue] = useState<string | undefined>('in');
     const [lugares, setLugares] = useState<{ value: number; label: string }[]>([]);
     const [filtro, setFiltro] = useState<string>('');
+    const [InventarioSeleccionado, setInventarioSeleccionado] = useState<InventarioResponse | undefined>(undefined);
+    const [panelVisible, setPanelVisible] = useState(false);
       
 
   const columnasMedicamentos = [
@@ -61,7 +65,7 @@
     { title: 'Fecha Acción', dataIndex: 'fechaAccion', key: 'fechaAccion', render: (d: string) => new Date(d).toLocaleDateString() },
     { title: 'Fecha Expira', dataIndex: 'fechaExpira', key: 'fechaExpira', render: (d: string) => new Date(d).toLocaleDateString() },
     { 
-      title: 'Acción', 
+      title: 'Estado', 
       dataIndex: 'accion', 
       key: 'accion',
       render: (accion: string) => (
@@ -87,6 +91,20 @@
 
       )
     },
+      {
+      title: 'Acción',
+      key: 'accionBtn',
+      render: (_: any, record:InventarioResponse) => (
+        <Space>
+          <Button
+            style={{ backgroundColor: '#d87a16', color: '#fff', borderColor: '#fa8c16' }}
+            type="default"
+            icon={<EditOutlined />}
+            onClick={() => handleEditar(record)}
+          />
+        </Space>
+      )
+    }
   ];
 
 
@@ -176,6 +194,12 @@
       } finally {
         setIsLoading(false);
       }
+    };
+
+    //handler
+    const handleEditar = (InventarioEdit: InventarioResponse) => {
+      setInventarioSeleccionado(InventarioEdit);
+      setPanelVisible(true);
     };
 
     const handleSubmit = async (
@@ -287,8 +311,8 @@
                       values.descripcion !== undefined && values.descripcion !== ''
                         ? values.descripcion
                         : tipoMovimiento === 'in'
-                          ? 'Ingreso de medicamento (Admin)'
-                          : 'Salida de medicamento (Admin)'
+                          ? values.descripcion = 'Ingreso de medicamento (Admin)'
+                          : values.descripcion = 'Salida de medicamento (Admin)'
                     }
                     onChange={handleChange}
                   />     
@@ -434,6 +458,13 @@
               scroll={{ x: 'max-content' }}
             />
           )}
+
+          <InventarioEditarComponent
+            visible={panelVisible}
+            onClose={() => setPanelVisible(false)}
+            inventario={InventarioSeleccionado}
+            onSuccess={cargarInventario}
+          />
         </Spin>
       </div>
     );

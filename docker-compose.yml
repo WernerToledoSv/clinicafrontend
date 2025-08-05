@@ -1,0 +1,18 @@
+services:
+  clinicafront:
+    build:
+      context: .
+      dockerfile: src/Dockerfile
+    image: clinicafront-api:1.0
+    container_name: clinica_front
+    ports:
+      - "6451:443"  # HTTPS
+      - "6450:80"   # HTTP
+    env_file:
+      - app.env   
+    restart: always
+    networks:
+      - services_default
+networks:
+  services_default:
+    external: true
